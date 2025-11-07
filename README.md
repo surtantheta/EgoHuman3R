@@ -1,150 +1,175 @@
-<!--
-  README (HTML-flavored) — paste directly into README.md
-  Notes:
-    • GitHub Markdown supports inline HTML.
-    • For videos: either store an .mp4 in the repo and use <video>, or link to YouTube/Vimeo with a thumbnail.
--->
-
-<h1 align="center">EgoAllo → Aria Digital Twin (ADT) Integration</h1>
+<h1 align="center">EgoAllo × Human3R: Bridging First-Person and Third-Person Human-Scene Reconstruction</h1>
 <p align="center">
-  <em>Estimating full-body & hand motion from egocentric input, adapted to Project Aria’s Digital Twin dataset.</em>
+  <em>Unifying egocentric (EgoAllo) and allocentric (Human3R) human reconstruction — for holistic understanding of humans within their scenes.</em>
 </p>
 
 <p align="center">
-  <a href="https://egoallo.github.io/" target="_blank">EgoAllo Project Page</a> •
+  <a href="https://egoallo.github.io/" target="_blank">EgoAllo</a> •
+  <a href="https://fanegg.github.io/Human3R/" target="_blank">Human3R</a> •
   <a href="https://projectaria.com/datasets/adt/" target="_blank">Aria Digital Twin (ADT)</a>
 </p>
 
 <hr/>
 
-<h2 id="overview">Overview</h2>
+<h2>🌐 Motivation</h2>
 <p>
-  This repository applies <a href="https://egoallo.github.io/" target="_blank">EgoAllo</a> to the
-  <a href="https://projectaria.com/datasets/adt/" target="_blank">Aria Digital Twin (ADT)</a> dataset.
-  EgoAllo estimates the wearer’s body and hands from egocentric imagery and head motion, producing
-  a globally consistent skeleton in the scene (allo-centric) frame. Here we evaluate and adapt EgoAllo’s
-  pipeline for ADT’s coordinate conventions and device streams.
+Recent years have seen a surge of progress in human reconstruction from egocentric and third-person viewpoints, yet these lines of work remain mostly disjoint.
 </p>
 
-<h3 id="goal">Main Goal</h3>
 <ul>
-  <li>Assess generalization of EgoAllo to ADT and ensure outputs (skeletons, hands) are correctly oriented, scaled, and placed in ADT’s world frame.</li>
+  <li>
+    <strong>EgoAllo</strong> (<a href="https://egoallo.github.io/" target="_blank">project page</a>) estimates a <em>first-person</em> wearer’s full-body and hand motion from head-mounted cameras and head poses, mapping them into a world (allo-centric) frame.
+  </li>
+  <li>
+    <strong>Human3R</strong> (<a href="https://fanegg.github.io/Human3R/" target="_blank">project page</a>) reconstructs <em>third-person</em> human meshes from multi-view or scene-anchored setups, reasoning about human–scene alignment, contact, and scale.
+  </li>
 </ul>
 
-<h3 id="inputs">Inputs</h3>
-<ul>
-  <li>Egocentric camera frames (from Aria device)</li>
-  <li>Head trajectory (6-DoF) / SLAM poses</li>
-  <li>Hand keypoint detections (e.g., wrist/palm/hand landmarks)</li>
-  <li><em>(Optional)</em> Calibration and floor/world references provided by ADT</li>
-</ul>
+<p>
+Existing works such as <a href="https://sanweiliti.github.io/egohmr/egohmr.html" target="_blank">EgoHMR</a> primarily handle <em>third-person reconstruction</em> of visible humans, while EgoAllo focuses solely on <em>the camera wearer</em>.
+This project proposes to <strong>marry EgoAllo and Human3R</strong> — achieving consistent reconstruction of both the <em>first-person human</em> (the camera wearer) and <em>third-person humans</em> (other people in the scene), together with the surrounding <strong>scene geometry</strong>.
+</p>
 
-<h3 id="outputs">Outputs</h3>
+<hr/>
+
+<h2>🎯 Project Goals</h2>
+
 <ul>
-  <li>Full-body skeleton (incl. hands) in the ADT world coordinate frame</li>
-  <li>Per-frame poses suitable for visualization and quantitative comparison to ADT mocap</li>
-  <li><em>(Optional)</em> Height estimate and diagnostic overlays</li>
+  <li><strong>Joint First-Person & Third-Person Reconstruction:</strong> Recover both the camera wearer and others in the environment under a unified coordinate frame.</li>
+  <li><strong>Scene Reconstruction:</strong> Use SLAM-derived or learned point clouds to build a spatially consistent environment.</li>
+  <li><strong>Cross-view Consistency:</strong> Enforce alignment between egocentric and allocentric reconstructions.</li>
+  <li><strong>Temporal & Contact Coherence:</strong> Maintain smooth, physically plausible interactions between humans and the environment.</li>
 </ul>
 
 <hr/>
 
-<h2 id="adt-adaptation">ADT Adaptation</h2>
-<p>
-  We interface the Aria device streams (images + head pose) with EgoAllo’s input format,
-  then export all estimated poses into the ADT world frame for qualitative and quantitative checks
-  against the dataset’s ground-truth motion capture.
-</p>
+<h2>📦 Inputs & Outputs</h2>
 
-<h3 id="orientation-issue">Orientation Issue We Observed</h3>
-<p>
-  When running the unmodified EgoAllo code on ADT sequences, we noticed a <strong>systematic orientation mismatch</strong>:
-  the estimated body location/scale look reasonable, but the <strong>facing direction (yaw)</strong> can be misaligned
-  relative to ADT’s world frame / mocap.
-</p>
+<h3>Inputs</h3>
 <ul>
-  <li><strong>Symptoms:</strong> Body appears rotated or facing the wrong direction despite correct placement.</li>
-  <li><strong>Likely cause:</strong> Frame convention differences between EgoAllo’s canonical frame and ADT’s world frame
-      (e.g., forward axis / up axis, CPF/head reference, left-handed vs. right-handed systems).</li>
-  <li><strong>Status:</strong> We are adding a consistent frame remapping step and validating across multiple sequences.</li>
+  <li>Egocentric RGB streams from Aria or similar HMD devices.</li>
+  <li>6-DoF head-pose trajectory from device SLAM.</li>
+  <li>Hand keypoint detections from egocentric views.</li>
+  <li>Third-person scene observations (RGB, depth, or reconstruction meshes).</li>
 </ul>
 
-<!-- ====== VIDEO SECTION ====== -->
-<h2 id="demo-video">Demo Video</h2>
+<h3>Outputs</h3>
+<ul>
+  <li>Full-body mesh of the <em>first-person human</em> (camera wearer) in world coordinates.</li>
+  <li>Meshes of <em>third-person humans</em> reconstructed and aligned with the same world frame.</li>
+  <li>Reconstructed scene geometry and contact-aware alignment between all entities.</li>
+</ul>
 
-<!-- Option A: Repo-hosted MP4 (recommended if you store the .mp4 in the repo) -->
-<!-- Replace path with your actual file path, e.g., docs/adt_orientation_demo.mp4 -->
+<hr/>
+
+<h2>⚙️ Implementation Notes — EgoAllo Limitations</h2>
+
+<p>
+When implementing EgoAllo directly on the
+<a href="https://projectaria.com/datasets/adt/" target="_blank">Aria Digital Twin Dataset (ADT)</a>,
+we encountered several practical issues that motivated this hybrid design:
+</p>
+
+<ul>
+  <li>
+    <strong>Orientation Mismatch:</strong> The reconstructed human often exhibits incorrect yaw or facing direction relative to ADT’s world frame. This arises from inconsistent frame conventions between EgoAllo’s canonical frame and ADT’s coordinate system (e.g., left- vs. right-handed, different up axes, or head pose reference).
+  </li>
+  <li>
+    <strong>Limited Third-Person Awareness:</strong> EgoAllo reconstructs only the camera wearer, with no reasoning about other humans or environmental contacts.
+  </li>
+  <li>
+    <strong>Scene Ignorance:</strong> EgoAllo does not incorporate explicit 3D scene geometry during optimization, leading to occasional floating or mis-scaled reconstructions.
+  </li>
+</ul>
+
+<p>
+Our ongoing integration introduces <em>Human3R’s contact-aware and scale-aware optimization</em> modules
+to correct these issues, aligning the reconstructed humans with both the physical scene and other agents.
+</p>
+
+<hr/>
+
+<h2>🎥 Example: Orientation Mismatch in EgoAllo (ADT)</h2>
+
+<p>
+Below is a short video illustrating the orientation problem encountered when applying the original EgoAllo pipeline to ADT sequences.
+While body location and articulation are plausible, the yaw/facing direction deviates from the true orientation.
+</p>
+
+<!-- Replace with your hosted video or YouTube link -->
 <video controls width="720" muted>
-  <source src="PATH/TO/YOUR/VIDEO.mp4" type="video/mp4" />
+  <source src="PATH/TO/your_demo_video.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-<!-- Option B: External video (YouTube/Vimeo) with a clickable thumbnail -->
-<!--
+<!-- Alternative: YouTube thumbnail link
 <p>
   <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
-    <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/hqdefault.jpg" alt="ADT Orientation Mismatch Demo" width="720"/>
+    <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/hqdefault.jpg" alt="EgoAllo ADT Orientation Demo" width="720"/>
   </a>
 </p>
 -->
 
 <hr/>
 
-<h2 id="quickstart">Quick Start</h2>
+<h2>🧩 Integration Pipeline (High-Level)</h2>
 <ol>
-  <li>Clone this repository.</li>
-  <li>Download and prepare an ADT sequence (images, 6-DoF head trajectory, calibration).</li>
-  <li>Install dependencies (match EgoAllo requirements + ADT parsing tools).</li>
-  <li>Configure the I/O paths in the provided scripts.</li>
-  <li>Run inference and export world-frame poses for visualization/evaluation.</li>
+  <li>Extract head-pose trajectory and camera frames from ADT sequences.</li>
+  <li>Run EgoAllo for initial first-person body + hand reconstruction.</li>
+  <li>Run Human3R for scene and other-human reconstruction.</li>
+  <li>Apply unified scale, orientation, and contact optimization to align all entities.</li>
+  <li>Visualize results and compare against ADT ground truth.</li>
 </ol>
 
-<pre><code># example (placeholder)
-conda create -n egoallo_adt python=3.10 -y
-conda activate egoallo_adt
+<hr/>
+
+<h2>🚀 Quick Start</h2>
+<pre><code># environment
+conda create -n egoallo_human3r python=3.10 -y
+conda activate egoallo_human3r
 pip install -r requirements.txt
 
-# run
-python run_egoallo_adt.py \
+# run example on ADT
+python run_hybrid_pipeline.py \
   --adt_seq /path/to/ADT/sequence \
-  --out_dir outputs/sequence_xyz \
+  --out_dir outputs/demo_sequence \
   --viz
 </code></pre>
 
 <hr/>
 
-<h2 id="roadmap">Roadmap</h2>
+<h2>🧭 Roadmap</h2>
 <ul>
-  <li>Finalize a robust ADT↔EgoAllo frame remapping (consistent up/forward, yaw alignment).</li>
-  <li>Quantify orientation and joint errors against ADT mocap; add scripts and tables.</li>
-  <li>Improve hand pose alignment in world frame; optional scale calibration checks.</li>
-  <li>Release minimal repro scripts for others to validate on ADT.</li>
+  <li>Finalize ADT↔EgoAllo coordinate alignment and yaw correction.</li>
+  <li>Integrate Human3R’s contact and scale priors for scene-aware optimization.</li>
+  <li>Evaluate across multiple ADT sequences with quantitative metrics (MPJPE, PVE, orientation error).</li>
+  <li>Release visual demos and detailed ablations.</li>
 </ul>
 
 <hr/>
 
-<h2 id="citation">Citation</h2>
-<p>Please cite the original EgoAllo work if you use this integration in research.</p>
-
-<pre><code>@inproceedings{EgoAllo2024,
-  title     = {EgoAllo: ...},
-  author    = {...},
-  booktitle = {...},
-  year      = {2024}
-}
-</code></pre>
+<h2>📚 References</h2>
+<ul>
+  <li><a href="https://egoallo.github.io/" target="_blank">EgoAllo: Egocentric-to-Allocentric Human Motion Reconstruction</a></li>
+  <li><a href="https://fanegg.github.io/Human3R/" target="_blank">Human3R: Human Reconstruction with Human–Scene Reasoning</a></li>
+  <li><a href="https://sanweiliti.github.io/egohmr/egohmr.html" target="_blank">EgoHMR: Egocentric Human Mesh Recovery</a></li>
+  <li><a href="https://projectaria.com/datasets/adt/" target="_blank">Aria Digital Twin Dataset</a></li>
+</ul>
 
 <hr/>
 
-<h2 id="acknowledgements">Acknowledgements</h2>
+<h2>🤝 Acknowledgements</h2>
 <p>
-  Built on <a href="https://egoallo.github.io/" target="_blank">EgoAllo</a>.
-  Thanks to the <a href="https://projectaria.com/datasets/adt/" target="_blank">Project Aria</a> team for ADT.
+We build upon the open-source releases of
+<a href="https://egoallo.github.io/" target="_blank">EgoAllo</a> and
+<a href="https://fanegg.github.io/Human3R/" target="_blank">Human3R</a>.
+We thank the Meta Project Aria team for the <a href="https://projectaria.com/datasets/adt/" target="_blank">ADT dataset</a>.
 </p>
 
 <hr/>
 
-<h2 id="license">License</h2>
+<h2>📄 License</h2>
 <p>
-  Specify your license here (e.g., MIT). See <code>LICENSE</code> for details.
+Specify your license here (e.g., MIT). See <code>LICENSE</code> for details.
 </p>
 

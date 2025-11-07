@@ -94,8 +94,10 @@ to correct these issues, aligning the reconstructed humans with both the physica
 <p>
 Below is a short video illustrating the orientation problem encountered when applying the original EgoAllo pipeline to ADT sequence, for e.g. Apartment_release_multiskeleton_party_seq106_71292. 
   
-To reproduce the issue, setup EgoAllo, download the vrs file and slam for any particular sequence and run ```bash
-   python 3_aria_inference.py --traj-root ./egoallo_example_trajectories/<seq>```.
+To reproduce the issue, setup EgoAllo, download the vrs file and slam for any particular sequence and run 
+```bash
+   python 3_aria_inference.py --traj-root ./egoallo_example_trajectories/<seq>
+```
 
 </p>
 

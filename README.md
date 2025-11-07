@@ -98,7 +98,7 @@ To reproduce the issue, setup EgoAllo, download the vrs file and slam for any pa
 
 <!-- Replace with your hosted video or YouTube link -->
 <video controls width="720" muted>
-  <source src="PATH/TO/your_demo_video.mp4" type="video/mp4">
+  <source src="sample.mov">
 </video>
 
 <!-- Alternative: YouTube thumbnail link

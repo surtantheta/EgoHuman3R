@@ -96,7 +96,10 @@ Below is a short video illustrating the orientation problem encountered when app
 To reproduce the issue, setup EgoAllo, download the vrs file and slam for any particular sequence.
 </p>
 
-<video src="data/sample.mp4" width="320" height="240" controls></video>
+
+https://github.com/user-attachments/assets/bfdfcbad-82a3-4a57-8d77-de35135a7823
+
+
 
 <!-- Alternative: YouTube thumbnail link
 <p>

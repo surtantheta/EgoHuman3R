@@ -95,9 +95,7 @@ to correct these issues, aligning the reconstructed humans with both the physica
 Below is a short video illustrating the orientation problem encountered when applying the original EgoAllo pipeline to ADT sequence, for e.g. Apartment_release_multiskeleton_party_seq106_71292.
 To reproduce the issue, setup EgoAllo, download the vrs file and slam for any particular sequence.
 </p>
-
-<!-- Replace with your hosted video or YouTube link -->
-[Download the video](data/sample.mp4)
+<video src="./data/sample.mp4" width="320" height="240" controls></video>
 
 <!-- Alternative: YouTube thumbnail link
 <p>

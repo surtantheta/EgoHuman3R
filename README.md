@@ -21,7 +21,7 @@ Recent years have seen a surge of progress in human reconstruction from egocentr
     <strong>EgoAllo</strong> (<a href="https://egoallo.github.io/" target="_blank">project page</a>) estimates a <em>first-person</em> wearer’s full-body and hand motion from head-mounted cameras and head poses, mapping them into a world (allo-centric) frame.
   </li>
   <li>
-    <strong>Human3R</strong> (<a href="https://fanegg.github.io/Human3R/" target="_blank">project page</a>) reconstructs <em>third-person</em> human meshes from multi-view or scene-anchored setups, reasoning about human–scene alignment, contact, and scale.
+    <strong>Human3R</strong> (<a href="https://fanegg.github.io/Human3R/" target="_blank">project page</a>) reconstructs <em>third-person</em> human meshes and scene from online stream of images, reasoning about human–scene alignment, contact, and scale.
   </li>
 </ul>
 

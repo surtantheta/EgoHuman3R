@@ -92,14 +92,13 @@ to correct these issues, aligning the reconstructed humans with both the physica
 <h2>🎥 Example: Orientation Mismatch in EgoAllo (ADT)</h2>
 
 <p>
-Below is a short video illustrating the orientation problem encountered when applying the original EgoAllo pipeline to ADT sequences.
-While body location and articulation are plausible, the yaw/facing direction deviates from the true orientation.
+Below is a short video illustrating the orientation problem encountered when applying the original EgoAllo pipeline to ADT sequence, for e.g. Apartment_release_multiskeleton_party_seq106_71292.
+To reproduce the issue, setup EgoAllo, download the vrs file and slam for any particular sequence.
 </p>
 
 <!-- Replace with your hosted video or YouTube link -->
 <video controls width="720" muted>
   <source src="PATH/TO/your_demo_video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
 
 <!-- Alternative: YouTube thumbnail link

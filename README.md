@@ -43,25 +43,6 @@ This project proposes to <strong>marry EgoAllo and Human3R</strong> — achievin
 
 <hr/>
 
-<h2>📦 Inputs & Outputs</h2>
-
-<h3>Inputs</h3>
-<ul>
-  <li>Egocentric RGB streams from Aria or similar HMD devices.</li>
-  <li>6-DoF head-pose trajectory from device SLAM.</li>
-  <li>Hand keypoint detections from egocentric views.</li>
-  <li>Third-person scene observations (RGB, depth, or reconstruction meshes).</li>
-</ul>
-
-<h3>Outputs</h3>
-<ul>
-  <li>Full-body mesh of the <em>first-person human</em> (camera wearer) in world coordinates.</li>
-  <li>Meshes of <em>third-person humans</em> reconstructed and aligned with the same world frame.</li>
-  <li>Reconstructed scene geometry and contact-aware alignment between all entities.</li>
-</ul>
-
-<hr/>
-
 <h2>⚙️ Implementation Notes — EgoAllo Limitations</h2>
 
 <p>

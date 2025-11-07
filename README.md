@@ -102,7 +102,10 @@ To reproduce the issue, setup EgoAllo, download the vrs file and slam for any pa
 </p>
 
 
-https://github.com/user-attachments/assets/bfdfcbad-82a3-4a57-8d77-de35135a7823
+
+
+https://github.com/user-attachments/assets/0ffb6bb7-e3da-4898-8e09-60fa432f246a
+
 
 
 

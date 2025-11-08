@@ -58,9 +58,6 @@ we encountered several practical issues that motivated this hybrid design:
   <li>
     <strong>Limited Third-Person Awareness:</strong> EgoAllo reconstructs only the camera wearer, with no reasoning about other humans or environmental contacts.
   </li>
-  <li>
-    <strong>Scene Ignorance:</strong> EgoAllo does not incorporate explicit 3D scene geometry during optimization, leading to occasional floating or mis-scaled reconstructions.
-  </li>
 </ul>
 
 <p>

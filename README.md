@@ -120,7 +120,7 @@ coordinate bias introduced by sensors / SLAM.
 <h4>Typical CLI Usage</h4>
 
 ```bash
-   python 3_aria_inference_fixedrot.py --traj_root ./egoallo_example_trajectories/<seq>
+   python ./scripts/3_aria_inference_fixedrot.py --traj_root ./egoallo_example_trajectories/<seq>
 ```
 <hr/>
 
@@ -134,7 +134,7 @@ poses / joints remain exactly as saved, so there is no “twist” of the human.
 <h4>Typical CLI Usage</h4>
 
 ```bash
-  python 4_visualize_outputs_fixedrot.py --search_root_dir ./egoallo_example_trajectories/<seq>
+  python ./scripts/4_visualize_outputs_fixedrot.py --search_root_dir ./egoallo_example_trajectories/<seq>
 ```
 
 <!-- Alternative: YouTube thumbnail link

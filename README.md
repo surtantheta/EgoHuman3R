@@ -38,7 +38,7 @@ This project proposes to <strong>marry EgoAllo and Human3R</strong> — achievin
 <hr/>
 
 <video autoplay loop muted playsinline controls style="width:100%;height:auto;">
-  <source src="[teaser_out.mp4](https://www.youtube.com/watch?v=bdsC6Ukws6s)" type="video/mp4">
+  <source src="https://www.youtube.com/watch?v=bdsC6Ukws6s" type="video/mp4">
 </video>
 
 <h2>🎯 Project Goals</h2>

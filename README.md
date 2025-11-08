@@ -92,6 +92,140 @@ This misalignment highlights the need for consistent coordinate transformation b
 and the ADT world frame, as well as improved use of the scene’s geometric context during optimization.
 </p>
 
+<h2>🧠 Our Proposed Tweak — Gravity-Aligned Global Frame Correction</h2>
+
+<p>
+Given the observed orientation inconsistencies and hovering SMPL meshes in EgoAllo outputs, we introduce
+a <strong>gravity-aligned global rotation</strong> strategy that consistently reorients all world-space quantities
+— camera trajectory, scene point cloud, and human body motion — before optimization.
+This ensures the ground plane and gravity axis are correctly aligned, resulting in physically coherent reconstructions.
+</p>
+
+<hr/>
+
+<h2 align="center">Script Type A — Rigid Alignment for Better Physics & Visualization</h2>
+
+<p>
+<b>Script Type A</b> applies a user-controlled, single rigid transform to remove
+coordinate bias introduced by sensors / SLAM.  
+There are two A-variants:
+</p>
+
+<ul>
+  <li><b>A-Inference (World-Rotate)</b>: rotate the <i>entire world</i> (poses + scene) <b>before</b> sampling / optimization.</li>
+  <li><b>A-Visualization (Scene-Rotate)</b>: rotate <i>only the scene point cloud</i> for a clean, upright view <b>after</b> inference.</li>
+</ul>
+
+<hr/>
+
+<h3>Why Type A?</h3>
+
+<p>
+Raw trajectories often arrive in tilted frames (e.g., Z-up vs Y-up, or with a slanted “floor”).  
+Type A scripts introduce a rigid alignment so all downstream logic — physics, contact, gravity, camera — operates
+in a consistent, interpretable coordinate system.
+</p>
+
+<div style="padding:10px;border-left:3px solid #888;background:#f8f8f8;">
+<b>Mathematical Core</b><br/>
+Let \(R\in SO(3)\) be the alignment rotation and \(t\in\mathbb{R}^3\) an optional recenter.<br/><br/>
+
+<b>A-Inference (World-Rotate)</b><br/>
+\[
+{}^{W'}T_{C_i}=R\,{}^{W}T_{C_i}, \qquad P_{W'}=P_W\,R^{\top},
+\]
+(optionally translate so floor \(z=0\)). All optimization now runs in the gravity-aligned frame \(W'\).<br/><br/>
+
+<b>A-Visualization (Scene-Rotate)</b><br/>
+\[
+P'_{\text{scene}}=P_{\text{scene}}\,R^{\top},
+\]
+poses / joints unchanged; optional scene-only recenter to make the floor at \(z=0\).
+</div>
+
+<hr/>
+
+<h3>🧩 A-Inference (World-Rotate)</h3>
+
+<p>
+Applies a fixed Euler rotation (e.g., Rx / Ry / Rz) to <b>poses and scene</b> before sampling,
+with optional floor recenter.  
+This improves physical priors (gravity, contact), numerical stability, and cross-sequence comparability.
+</p>
+
+<h4>Key Properties</h4>
+<ul>
+  <li>Rotates <code>Ts_world_cpf</code>, <code>Ts_world_device</code>, and the point cloud.</li>
+  <li>Optional recenter so the rotated floor satisfies <code>z = 0</code>.</li>
+  <li>Ordering convention: <code>R = Rz · Ry · Rx</code> (left-multiplied to world→* transforms).</li>
+</ul>
+
+<h4>Typical CLI Usage</h4>
+<pre><code>python 3_aria_inference_fixedrot.py \
+  --traj_root /path/to/run \
+  --rot_x_deg 90 --rot_y_deg 0 --rot_z_deg 0 \
+  --recenter_floor_zero True \
+  --num_samples 1 --traj_length 4000
+</code></pre>
+
+<h4>When to Use</h4>
+<ul>
+  <li>Floor looks slanted or gravity axis is off in raw data.</li>
+  <li>Contact / penetration / floor losses assume \(z\parallel g\) but fail in practice.</li>
+  <li>You want physically meaningful coordinates before any optimization.</li>
+</ul>
+
+<hr/>
+
+<h3>🪞 A-Visualization (Scene-Rotate)</h3>
+
+<p>
+Applies a fixed rotation to the <b>scene point cloud only</b> (e.g., +90° about X) for viewing;
+poses / joints remain exactly as saved, so there is no “twist” of the human.
+</p>
+
+<h4>Key Properties</h4>
+<ul>
+  <li>Rotates only the scene: <code>P' = P · R_x(θ)^T</code> (row-vector convention).</li>
+  <li>Optional recenter scene so floor at <code>z = 0</code>.</li>
+  <li>Ideal for upright visualization without altering results.</li>
+</ul>
+
+<h4>Typical CLI Usage</h4>
+<pre><code>python 4_visualize_outputs_scene_rx90.py \
+  --search_root_dir /path/to/run \
+  --rot_x_deg 90 \
+  --recenter_floor_zero True
+</code></pre>
+
+<h4>When to Use</h4>
+<ul>
+  <li>Outputs are correct but appear tilted in the viewer.</li>
+  <li>You need a cosmetic, non-destructive re-orientation for demos or debugging.</li>
+</ul>
+
+<hr/>
+
+<h3>🧭 Practical Notes</h3>
+<ul>
+  <li><b>Rotation order matters</b>: use a consistent Euler sequence (e.g., <code>Rz·Ry·Rx</code>).</li>
+  <li><b>Row-vector vs column-vector</b> conventions differ; these scripts use row-vector rotations for point clouds (<code>P' = P·R^T</code>).</li>
+  <li><b>Recenter strategy</b>: set floor to <code>z = 0</code> using a robust percentile (e.g., median z).</li>
+</ul>
+
+<hr/>
+
+<h3>📘 TL;DR</h3>
+<ul>
+  <li><b>A-Inference</b> = rotate world (poses + scene) <i>before</i> optimization → physics-aligned coordinates.</li>
+  <li><b>A-Visualization</b> = rotate scene <i>only</i> <i>after</i> inference → upright, interpretable viewing.</li>
+</ul>
+
+<blockquote>
+<b>Unified Principle:</b><br/>
+Apply a single rigid alignment to eliminate arbitrary coordinate bias and make gravity, floor, and contacts coherent with the chosen axes.
+</blockquote>
+
 
 <!-- Alternative: YouTube thumbnail link
 <p>

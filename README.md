@@ -161,6 +161,7 @@ https://github.com/user-attachments/assets/719960c5-29c2-425f-8cf8-9ee766a2c64c
 # Run EgoHuman3R
 
 ```bash
+  python ego_self_export.py --npz ./egoallo/egoallo_example_trajectories/Apartment_release_multiskeleton_party_seq114_71292/egoallo_outputs/<seq_id>.npz --out_dir ./egoallo/egoallo_example_trajectories/Apartment_release_multiskeleton_party_seq114_71292
   python demo_save_reload.py --model_path src/human3r.pth --size 512 --seq_path ./egoallo/egoallo_example_trajectories/Apartment_release_multiskeleton_party_seq127_M1292/Apartment_release_multiskeleton_party_seq127_M1292.mp4 --subsample 1 --use_ttt3r --reset_interval 100 --bundle_dir ./Human3R/output/Apartment_release_multiskeleton_party_seq114_71292 --export_bundle --use_ttt3r
   python egoallo_human3r.py --p1_dir ./egoallo/egoallo_example_trajectories/Apartment_release_multiskeleton_party_seq114_71292/ego_self_output --bundle_dir ./Human3R/output/Apartment_release_multiskeleton_party_seq114_71292
 ```

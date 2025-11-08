@@ -16,7 +16,6 @@
 https://github.com/user-attachments/assets/54aa1324-9b52-48df-8c99-3ec0ac2dd055
 
 
-
 <h2>🌐 Motivation</h2>
 <p>
 Recent years have seen a surge of progress in human reconstruction from egocentric and third-person viewpoints, yet these lines of work remain mostly disjoint.

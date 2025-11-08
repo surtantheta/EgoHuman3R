@@ -193,8 +193,3 @@ We thank the Meta Project Aria team for the <a href="https://projectaria.com/dat
 
 <hr/>
 
-<h2>📄 License</h2>
-<p>
-Specify your license here (e.g., MIT). See <code>LICENSE</code> for details.
-</p>
-

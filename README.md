@@ -1,4 +1,4 @@
-<h1 align="center">EgoAllo × Human3R: Bridging First-Person and Third-Person Human-Scene Reconstruction</h1>
+<h1 align="center">EgoHuman3R: Bridging First-Person and Third-Person Human-Scene Reconstruction</h1>
 <p align="center">
   <em>Unifying egocentric (EgoAllo) and allocentric (Human3R) human reconstruction — for holistic understanding of humans within their scenes.</em>
 </p>
@@ -10,6 +10,12 @@
 </p>
 
 <hr/>
+
+
+
+https://github.com/user-attachments/assets/54aa1324-9b52-48df-8c99-3ec0ac2dd055
+
+
 
 <h2>🌐 Motivation</h2>
 <p>

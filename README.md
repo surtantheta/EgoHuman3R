@@ -137,13 +137,6 @@ poses / joints remain exactly as saved, so there is no “twist” of the human.
   python ./scripts/4_visualize_outputs_fixedrot.py --search_root_dir ./egoallo_example_trajectories/<seq>
 ```
 
-<!-- Alternative: YouTube thumbnail link
-<p>
-  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
-    <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/hqdefault.jpg" alt="EgoAllo ADT Orientation Demo" width="720"/>
-  </a>
-</p>
--->
 
 
 https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
@@ -165,29 +158,11 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 
 https://github.com/user-attachments/assets/719960c5-29c2-425f-8cf8-9ee766a2c64c
 
+# run EgoHuman3R
 
-<h2>🚀 Quick Start</h2>
-<pre><code># environment
-conda create -n egoallo_human3r python=3.10 -y
-conda activate egoallo_human3r
-pip install -r requirements.txt
-
-# run example on ADT
-python run_hybrid_pipeline.py \
-  --adt_seq /path/to/ADT/sequence \
-  --out_dir outputs/demo_sequence \
-  --viz
-</code></pre>
-
-<hr/>
-
-<h2>🧭 Roadmap</h2>
-<ul>
-  <li>Finalize ADT↔EgoAllo coordinate alignment and yaw correction.</li>
-  <li>Integrate Human3R’s contact and scale priors for scene-aware optimization.</li>
-  <li>Evaluate across multiple ADT sequences with quantitative metrics (MPJPE, PVE, orientation error).</li>
-  <li>Release visual demos and detailed ablations.</li>
-</ul>
+```bash
+  python egoallo_human3r.py --p1_dir ./egoallo/egoallo_example_trajectories/Apartment_release_multiskeleton_party_seq114_71292/ego_self_output --bundle_dir ./Human3R/output/Apartment_release_multiskeleton_party_seq114_71292
+```
 
 <hr/>
 

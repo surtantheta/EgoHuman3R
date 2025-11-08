@@ -162,6 +162,10 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 
 <hr/>
 
+
+https://github.com/user-attachments/assets/719960c5-29c2-425f-8cf8-9ee766a2c64c
+
+
 <h2>🚀 Quick Start</h2>
 <pre><code># environment
 conda create -n egoallo_human3r python=3.10 -y

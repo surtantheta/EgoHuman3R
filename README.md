@@ -88,7 +88,7 @@ To reproduce the issue, setup EgoAllo, download the vrs file and slam for any pa
 https://github.com/user-attachments/assets/0ffb6bb7-e3da-4898-8e09-60fa432f246a
 
 <p>
-Our observation is that the <strong>ground plane</strong> estimated by EgoAllo is <em>not aligned</em> with the 
+Our observation is that the <strong>ground plane</strong> estimated by EgoAllo for ADT sequences is <em>not aligned</em> with the 
 actual surface of the scene point cloud. Consequently, the SMPL parameter prediction becomes inconsistent with 
 the true world geometry — producing a visibly <strong>“hovering” human mesh</strong> above the ground surface.
 This misalignment highlights the need for consistent coordinate transformation between EgoAllo’s canonical frame 

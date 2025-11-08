@@ -145,6 +145,10 @@ poses / joints remain exactly as saved, so there is no “twist” of the human.
 </p>
 -->
 
+
+https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
+
+
 <hr/>
 
 <h2>🧩 Integration Pipeline (High-Level)</h2>

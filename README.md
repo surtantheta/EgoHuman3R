@@ -149,8 +149,7 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
   <li>Extract head-pose trajectory and camera frames from ADT sequences.</li>
   <li>Run EgoAllo for initial first-person body + hand reconstruction.</li>
   <li>Run Human3R for scene and other-human reconstruction.</li>
-  <li>Apply unified scale, orientation, and contact optimization to align all entities.</li>
-  <li>Visualize results and compare against ADT ground truth.</li>
+  <li>Apply unified scale, orientation, and contact optimization to align all entities using Umeyama.</li>
 </ol>
 
 <hr/>

@@ -13,7 +13,10 @@
 
 
 
-https://github.com/user-attachments/assets/54aa1324-9b52-48df-8c99-3ec0ac2dd055
+https://github.com/user-attachments/assets/29f93918-8fe1-49b8-bdf8-d5457847463d
+
+
+
 
 
 <h2>🌐 Motivation</h2>
@@ -36,10 +39,6 @@ This project proposes to <strong>marry EgoAllo and Human3R</strong> — achievin
 </p>
 
 <hr/>
-
-<video autoplay loop muted playsinline controls style="width:100%;height:auto;">
-  <source src="https://www.youtube.com/watch?v=bdsC6Ukws6s" type="video/mp4">
-</video>
 
 <h2>🎯 Project Goals</h2>
 
@@ -164,7 +163,9 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 <hr/>
 
 
-https://github.com/user-attachments/assets/719960c5-29c2-425f-8cf8-9ee766a2c64c
+https://github.com/user-attachments/assets/b61edacf-51a2-4f3c-ac39-b3278162c51a
+
+
 
 # Run EgoHuman3R
 

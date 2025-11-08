@@ -118,33 +118,6 @@ There are two A-variants:
 
 <hr/>
 
-<h3>Why Type A?</h3>
-
-<p>
-Raw trajectories often arrive in tilted frames (e.g., Z-up vs Y-up, or with a slanted “floor”).  
-Type A scripts introduce a rigid alignment so all downstream logic — physics, contact, gravity, camera — operates
-in a consistent, interpretable coordinate system.
-</p>
-
-<div style="padding:10px;border-left:3px solid #888;background:#f8f8f8;">
-<b>Mathematical Core</b><br/>
-Let \(R\in SO(3)\) be the alignment rotation and \(t\in\mathbb{R}^3\) an optional recenter.<br/><br/>
-
-<b>A-Inference (World-Rotate)</b><br/>
-\[
-{}^{W'}T_{C_i}=R\,{}^{W}T_{C_i}, \qquad P_{W'}=P_W\,R^{\top},
-\]
-(optionally translate so floor \(z=0\)). All optimization now runs in the gravity-aligned frame \(W'\).<br/><br/>
-
-<b>A-Visualization (Scene-Rotate)</b><br/>
-\[
-P'_{\text{scene}}=P_{\text{scene}}\,R^{\top},
-\]
-poses / joints unchanged; optional scene-only recenter to make the floor at \(z=0\).
-</div>
-
-<hr/>
-
 <h3>🧩 A-Inference (World-Rotate)</h3>
 
 <p>

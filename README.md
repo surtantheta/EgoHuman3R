@@ -162,9 +162,9 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 
 <hr/>
 
-<h2>Visual Evaluation</h2>
 <img width="1028" height="550" alt="pipeline" src="https://github.com/user-attachments/assets/1b359723-5098-43f6-973b-ebd0b4db701e" />
 
+<h2>Visual Evaluation</h2>
 
 https://github.com/user-attachments/assets/b61edacf-51a2-4f3c-ac39-b3278162c51a
 

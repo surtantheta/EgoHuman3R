@@ -40,7 +40,7 @@ This project proposes to <strong>marry EgoAllo and Human3R</strong> — achievin
 
 <hr/>
 
-<h2>🎯 Project Goals</h2>
+<h2>Project Goals</h2>
 
 <ul>
   <li><strong>Joint First-Person & Third-Person Reconstruction:</strong> Recover both the camera wearer and others in the environment under a unified coordinate frame.</li>
@@ -100,7 +100,7 @@ This misalignment highlights the need for consistent coordinate transformation b
 and the ADT world frame, as well as improved use of the scene’s geometric context during optimization.
 </p>
 
-<h2>🧠 Our Proposed Tweak — Gravity-Aligned Global Frame Correction</h2>
+<h2>Our Proposed Tweak — Gravity-Aligned Global Frame Correction</h2>
 
 <p>
 Given the observed orientation inconsistencies and hovering SMPL meshes in EgoAllo outputs, we introduce
@@ -152,7 +152,7 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 
 <hr/>
 
-<h2>🧩 Integration Pipeline (High-Level)</h2>
+<h2>Integration Pipeline (High-Level)</h2>
 <ol>
   <li>Extract head-pose trajectory and camera frames from ADT sequences.</li>
   <li>Run EgoAllo for initial first-person body + hand reconstruction.</li>
@@ -161,6 +161,9 @@ https://github.com/user-attachments/assets/8b4629f9-0fb1-4f94-8475-d728d4b812d6
 </ol>
 
 <hr/>
+
+<h2>Visual Evaluation</h2>
+<img width="1028" height="550" alt="pipeline" src="https://github.com/user-attachments/assets/1b359723-5098-43f6-973b-ebd0b4db701e" />
 
 
 https://github.com/user-attachments/assets/b61edacf-51a2-4f3c-ac39-b3278162c51a
